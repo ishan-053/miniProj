@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Portal</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="landing-page">
+    <main class="landing-content">
+        <div class="landing-heading">
+            <div class="logo-icon"><i data-lucide="heart-pulse"></i></div>
+            <span class="landing-label">Hospital Portal</span>
+            <h1>Select a dashboard</h1>
+            <p>Choose the workspace you want to open.</p>
+        </div>
+
+        <nav class="role-grid" aria-label="Dashboard options">
+            <a class="role-card" href="doctor.html">
+                <i data-lucide="stethoscope"></i>
+                <span>Doctor Dashboard</span>
+                <small>Open doctor workspace</small>
+            </a>
+            <a class="role-card" href="patient.html">
+                <i data-lucide="user-round"></i>
+                <span>Patient Dashboard</span>
+                <small>Open patient workspace</small>
+            </a>
+            <a class="role-card" href="admin.html">
+                <i data-lucide="shield-check"></i>
+                <span>Admin Dashboard</span>
+                <small>Open admin workspace</small>
+            </a>
+        </nav>
+    </main>
+
+    <script>lucide.createIcons();</script>
+</body>
+</html>
