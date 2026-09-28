@@ -20,38 +20,152 @@
                 <a href="admin.html" class="nav-item"><i data-lucide="shield-check"></i><span>Admin Dashboard</span></a>
             </nav>
         </aside>
-        <main class="main-content">
-            <header class="topbar">
-                <div>
-                    <h1>Patient Dashboard</h1>
-                    <p>Your health information will be shown here.</p>
-                </div>
-            </header>
-            <section class="dashboard-content">
-                <div class="welcome">
-                    <h2>Patient workspace</h2>
-                    <p>Connect your database to load your profile and health information.</p>
-                </div>
-                <div class="card-grid" id="dashboard-cards">
-                    <button class="content-card" type="button" data-table="profile-table"><i data-lucide="user-round"></i><h2>Profile</h2><p>Open the profile table.</p></button>
-                    <button class="content-card" type="button" data-table="appointments-table"><i data-lucide="calendar-days"></i><h2>Appointments</h2><p>Open the appointments table.</p></button>
-                    <button class="content-card" type="button" data-table="records-table"><i data-lucide="file-heart"></i><h2>Medical records</h2><p>Open the medical records table.</p></button>
-                </div>
-                <section class="table-view" id="profile-table" hidden>
-                    <div class="table-heading"><div><h2>Profile</h2><p>No profile data is connected yet.</p></div><button class="back-button" type="button"><i data-lucide="arrow-left"></i>Back</button></div>
-                    <div class="table-container"><table><thead><tr><th>Field</th><th>Value</th></tr></thead><tbody><tr><td class="empty-cell" colspan="2">No profile information available</td></tr></tbody></table></div>
-                </section>
-                <section class="table-view" id="appointments-table" hidden>
-                    <div class="table-heading"><div><h2>Appointments</h2><p>No appointment data is connected yet.</p></div><button class="back-button" type="button"><i data-lucide="arrow-left"></i>Back</button></div>
-                    <div class="table-container"><table><thead><tr><th>Doctor</th><th>Date</th><th>Status</th></tr></thead><tbody><tr><td class="empty-cell" colspan="3">No appointments available</td></tr></tbody></table></div>
-                </section>
-                <section class="table-view" id="records-table" hidden>
-                    <div class="table-heading"><div><h2>Medical records</h2><p>No medical record data is connected yet.</p></div><button class="back-button" type="button"><i data-lucide="arrow-left"></i>Back</button></div>
-                    <div class="table-container"><table><thead><tr><th>Record</th><th>Date</th><th>Status</th></tr></thead><tbody><tr><td class="empty-cell" colspan="3">No medical records available</td></tr></tbody></table></div>
-                </section>
-            </section>
-        </main>
+       <div class="content">
+
+    <!-- Header -->
+    <div class="section-header">
+        <div>
+            <h2>Health Overview</h2>
+            <p>View your latest health information and updates.</p>
+        </div>
+
+        <button class="btn btn-secondary" id="refreshPatient">
+            <i data-lucide="refresh-cw"></i>
+            Refresh
+        </button>
     </div>
+
+    <!-- Patient Information -->
+    <div class="card">
+        <div class="section-header">
+            <div>
+                <h2>Patient Information</h2>
+                <p>Your registered information.</p>
+            </div>
+        </div>
+
+        <div id="patientInfo">
+            <div class="empty-state">
+                <i data-lucide="user-round"></i>
+                <h3>No patient information available</h3>
+                <p>Your information will appear here when provided by the backend.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Vitals -->
+    <div class="section-header">
+        <div>
+            <h2>Health Status</h2>
+            <p>Latest recorded vital information.</p>
+        </div>
+    </div>
+
+    <div class="vitals-grid">
+
+        <div class="vital-card" id="heartRateCard">
+            <h3>
+                <i data-lucide="heart-pulse"></i>
+                Heart Rate
+            </h3>
+
+            <div class="vital-value">
+                <span id="heartRate">—</span>
+                <small>BPM</small>
+            </div>
+        </div>
+
+        <div class="vital-card" id="spo2Card">
+            <h3>
+                <i data-lucide="activity"></i>
+                SpO₂
+            </h3>
+
+            <div class="vital-value">
+                <span id="spo2">—</span>
+                <small>%</small>
+            </div>
+        </div>
+
+        <div class="vital-card" id="temperatureCard">
+            <h3>
+                <i data-lucide="thermometer"></i>
+                Temperature
+            </h3>
+
+            <div class="vital-value">
+                <span id="temperature">—</span>
+                <small>°C</small>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Overall Health Status -->
+    <div class="card">
+
+        <div class="section-header">
+            <div>
+                <h2>Overall Health Status</h2>
+                <p>Current status reported by the healthcare system.</p>
+            </div>
+        </div>
+
+        <div id="healthStatus">
+            <div class="empty-state">
+                <i data-lucide="heart-pulse"></i>
+                <h3>Status unavailable</h3>
+                <p>Health status will appear when data is received from the backend.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Appointments -->
+    <div class="card">
+
+        <div class="section-header">
+            <div>
+                <h2>Appointments</h2>
+                <p>Your scheduled appointments.</p>
+            </div>
+        </div>
+
+        <div id="appointmentsContainer">
+
+            <div class="empty-state">
+                <i data-lucide="calendar-days"></i>
+                <h3>No appointments available</h3>
+                <p>Your appointments will appear here.</p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Notifications -->
+    <div class="card">
+
+        <div class="section-header">
+            <div>
+                <h2>Notifications</h2>
+                <p>Important updates from the healthcare system.</p>
+            </div>
+        </div>
+
+        <div id="notificationsContainer">
+
+            <div class="empty-state">
+                <i data-lucide="bell"></i>
+                <h3>No notifications</h3>
+                <p>New notifications will appear here.</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
     <script>
         lucide.createIcons();
         const cards = document.querySelectorAll('[data-table]');

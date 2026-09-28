@@ -436,3 +436,41 @@ function escapeHTML(value) {
         .replaceAll("'", "&#039;");
 
 }
+
+// ================================
+// Patient Dashboard Interactions
+// ================================
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const refreshButton =
+        document.getElementById("refreshPatient");
+
+    if (refreshButton) {
+
+        refreshButton.addEventListener("click", async () => {
+
+            refreshButton.disabled = true;
+
+            const icon =
+                refreshButton.querySelector("i");
+
+            if (icon) {
+                icon.style.animation =
+                    "spin 1s linear infinite";
+            }
+
+            await loadPatientDashboard();
+            await loadPatientVitals();
+            await loadPatientAppointments();
+            await loadPatientNotifications();
+
+            if (icon) {
+                icon.style.animation = "";
+            }
+
+            refreshButton.disabled = false;
+        });
+    }
+
+});

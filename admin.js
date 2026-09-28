@@ -423,3 +423,100 @@ function escapeHTML(value) {
         .replaceAll("'", "&#039;");
 
 }
+// ================================
+// Admin Dashboard Interactions
+// ================================
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const refreshButton =
+        document.getElementById("refreshAdmin");
+
+    if (refreshButton) {
+
+        refreshButton.addEventListener("click", async () => {
+
+            refreshButton.disabled = true;
+
+            const icon =
+                refreshButton.querySelector("i");
+
+            if (icon) {
+                icon.style.animation =
+                    "spin 1s linear infinite";
+            }
+
+            await loadAdminDashboard();
+            await loadAdminPatients();
+            await loadAdminDoctors();
+            await loadAdminAlerts();
+
+            if (icon) {
+                icon.style.animation = "";
+            }
+
+            refreshButton.disabled = false;
+        });
+    }
+
+
+    // Patient search
+    const patientSearch =
+        document.getElementById("adminPatientSearch");
+
+    if (patientSearch) {
+
+        patientSearch.addEventListener("input", () => {
+
+            const searchTerm =
+                patientSearch.value
+                    .toLowerCase()
+                    .trim();
+
+            const patients =
+                document.querySelectorAll(".patient-record");
+
+            patients.forEach(patient => {
+
+                const text =
+                    patient.textContent.toLowerCase();
+
+                patient.style.display =
+                    text.includes(searchTerm)
+                        ? "flex"
+                        : "none";
+            });
+        });
+    }
+
+
+    // Doctor search
+    const doctorSearch =
+        document.getElementById("doctorSearch");
+
+    if (doctorSearch) {
+
+        doctorSearch.addEventListener("input", () => {
+
+            const searchTerm =
+                doctorSearch.value
+                    .toLowerCase()
+                    .trim();
+
+            const doctors =
+                document.querySelectorAll(".doctor-record");
+
+            doctors.forEach(doctor => {
+
+                const text =
+                    doctor.textContent.toLowerCase();
+
+                doctor.style.display =
+                    text.includes(searchTerm)
+                        ? "flex"
+                        : "none";
+            });
+        });
+    }
+
+});

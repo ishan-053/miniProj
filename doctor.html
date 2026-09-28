@@ -1,69 +1,108 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Doctor Dashboard</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://unpkg.com/lucide@latest"></script>
-</head>
-<body>
-    <div class="dashboard">
-        <aside class="sidebar">
-            <div class="logo">
-                <div class="logo-icon"><i data-lucide="layout-dashboard"></i></div>
-                <strong>Hospital Portal</strong>
-            </div>
-            <nav class="navigation" aria-label="Dashboard navigation">
-                <a href="doctor.html" class="nav-item active" aria-current="page"><i data-lucide="stethoscope"></i><span>Doctor Dashboard</span></a>
-                <a href="patient.html" class="nav-item"><i data-lucide="user-round"></i><span>Patient Dashboard</span></a>
-                <a href="admin.html" class="nav-item"><i data-lucide="shield-check"></i><span>Admin Dashboard</span></a>
-            </nav>
-        </aside>
-        <main class="main-content">
-            <header class="topbar">
-                <div>
-                    <h1>Doctor Dashboard</h1>
-                    <p>Doctor tools will be connected to your database.</p>
-                </div>
-            </header>
-            <section class="dashboard-content">
-                <div class="welcome">
-                    <h2>Doctor workspace</h2>
-                    <p>Connect your database to load patients, appointments, and reports.</p>
-                </div>
-                <div class="card-grid" id="dashboard-cards">
-                    <button class="content-card" type="button" data-table="patients-table"><i data-lucide="users"></i><h2>Patients</h2><p>Open the patients table.</p></button>
-                    <button class="content-card" type="button" data-table="appointments-table"><i data-lucide="calendar-days"></i><h2>Appointments</h2><p>Open the appointments table.</p></button>
-                    <button class="content-card" type="button" data-table="reports-table"><i data-lucide="clipboard-list"></i><h2>Reports</h2><p>Open the reports table.</p></button>
-                </div>
-                <section class="table-view" id="patients-table" hidden>
-                    <div class="table-heading"><div><h2>Patients</h2><p>No patient data is connected yet.</p></div><button class="back-button" type="button"><i data-lucide="arrow-left"></i>Back</button></div>
-                    <div class="table-container"><table><thead><tr><th>Name</th><th>Age</th><th>Status</th></tr></thead><tbody><tr><td class="empty-cell" colspan="3">No patients available</td></tr></tbody></table></div>
-                </section>
-                <section class="table-view" id="appointments-table" hidden>
-                    <div class="table-heading"><div><h2>Appointments</h2><p>No appointment data is connected yet.</p></div><button class="back-button" type="button"><i data-lucide="arrow-left"></i>Back</button></div>
-                    <div class="table-container"><table><thead><tr><th>Patient</th><th>Date</th><th>Status</th></tr></thead><tbody><tr><td class="empty-cell" colspan="3">No appointments available</td></tr></tbody></table></div>
-                </section>
-                <section class="table-view" id="reports-table" hidden>
-                    <div class="table-heading"><div><h2>Reports</h2><p>No report data is connected yet.</p></div><button class="back-button" type="button"><i data-lucide="arrow-left"></i>Back</button></div>
-                    <div class="table-container"><table><thead><tr><th>Report</th><th>Date</th><th>Status</th></tr></thead><tbody><tr><td class="empty-cell" colspan="3">No reports available</td></tr></tbody></table></div>
-                </section>
-            </section>
-        </main>
+<div class="content">
+
+    <!-- Dashboard Header -->
+    <div class="section-header">
+        <div>
+            <h2>Overview</h2>
+            <p>Monitor patient activity and critical alerts.</p>
+        </div>
+
+        <button class="btn btn-secondary" id="refreshDoctor">
+            <i data-lucide="refresh-cw"></i>
+            Refresh
+        </button>
     </div>
-    <script>
-        lucide.createIcons();
-        const cards = document.querySelectorAll('[data-table]');
-        const cardGrid = document.querySelector('#dashboard-cards');
-        cards.forEach(card => card.addEventListener('click', () => {
-            cardGrid.hidden = true;
-            document.querySelector(`#${card.dataset.table}`).hidden = false;
-        }));
-        document.querySelectorAll('.back-button').forEach(button => button.addEventListener('click', () => {
-            document.querySelectorAll('.table-view').forEach(table => table.hidden = true);
-            cardGrid.hidden = false;
-        }));
-    </script>
-</body>
-</html>
+
+    <!-- Statistics -->
+    <div class="stats-grid">
+
+        <div class="stat-card">
+            <div class="icon">
+                <i data-lucide="users"></i>
+            </div>
+            <h3 id="totalPatients">—</h3>
+            <p>Total Patients</p>
+        </div>
+
+        <div class="stat-card critical">
+            <div class="icon">
+                <i data-lucide="triangle-alert"></i>
+            </div>
+            <h3 id="criticalPatients">—</h3>
+            <p>Critical Patients</p>
+        </div>
+
+        <div class="stat-card">
+            <div class="icon">
+                <i data-lucide="calendar-days"></i>
+            </div>
+            <h3 id="appointments">—</h3>
+            <p>Appointments</p>
+        </div>
+
+        <div class="stat-card">
+            <div class="icon">
+                <i data-lucide="file-clock"></i>
+            </div>
+            <h3 id="pendingReports">—</h3>
+            <p>Pending Reports</p>
+        </div>
+
+    </div>
+
+    <!-- Critical Alerts -->
+    <div class="card">
+
+        <div class="section-header">
+            <div>
+                <h2>Critical Alerts</h2>
+                <p>Important patient alerts from the notification engine.</p>
+            </div>
+        </div>
+
+        <div id="alertsContainer">
+
+            <div class="empty-state">
+                <i data-lucide="shield-check"></i>
+                <h3>No alerts available</h3>
+                <p>Alerts will appear here when received from the backend.</p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Patient Records -->
+    <div class="card">
+
+        <div class="section-header">
+
+            <div>
+                <h2>Patient Records</h2>
+                <p>Patients assigned to you.</p>
+            </div>
+
+            <div class="search-box">
+                <i data-lucide="search"></i>
+                <input
+                    type="text"
+                    id="patientSearch"
+                    placeholder="Search patients..."
+                >
+            </div>
+
+        </div>
+
+        <div id="patientsContainer">
+
+            <div class="empty-state">
+                <i data-lucide="users"></i>
+                <h3>No patient records available</h3>
+                <p>Patient records will appear here when provided by the backend.</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

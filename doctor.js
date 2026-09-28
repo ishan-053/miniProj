@@ -446,3 +446,60 @@ function escapeHTML(value) {
         .replaceAll("'", "&#039;");
 
 }
+
+// ================================
+// Doctor Dashboard Interactions
+// ================================
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const refreshButton = document.getElementById("refreshDoctor");
+
+    if (refreshButton) {
+        refreshButton.addEventListener("click", async () => {
+
+            refreshButton.disabled = true;
+
+            const icon = refreshButton.querySelector("i");
+
+            if (icon) {
+                icon.style.animation = "spin 1s linear infinite";
+            }
+
+            await loadDoctorDashboard();
+            await loadDoctorPatients();
+            await loadDoctorAlerts();
+
+            if (icon) {
+                icon.style.animation = "";
+            }
+
+            refreshButton.disabled = false;
+        });
+    }
+
+    const searchInput = document.getElementById("patientSearch");
+
+    if (searchInput) {
+        searchInput.addEventListener("input", () => {
+
+            const searchTerm =
+                searchInput.value.toLowerCase().trim();
+
+            const patients =
+                document.querySelectorAll(".patient-record");
+
+            patients.forEach(patient => {
+
+                const text =
+                    patient.textContent.toLowerCase();
+
+                patient.style.display =
+                    text.includes(searchTerm)
+                        ? "flex"
+                        : "none";
+            });
+        });
+    }
+
+});

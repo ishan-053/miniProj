@@ -20,37 +20,155 @@
                 <a href="admin.html" class="nav-item active" aria-current="page"><i data-lucide="shield-check"></i><span>Admin Dashboard</span></a>
             </nav>
         </aside>
-        <main class="main-content">
-            <header class="topbar">
-                <div>
-                    <h1>Admin Dashboard</h1>
-                    <p>Manage the application after connecting your database.</p>
-                </div>
-            </header>
-            <section class="dashboard-content">
-                <div class="welcome">
-                    <h2>Admin workspace</h2>
-                    <p>This dashboard is ready for user, appointment, and system data.</p>
-                </div>
-                <div class="card-grid" id="dashboard-cards">
-                    <button class="content-card" type="button" data-table="users-table"><i data-lucide="users"></i><h2>User management</h2><p>Open the users table.</p></button>
-                    <button class="content-card" type="button" data-table="appointments-table"><i data-lucide="calendar-days"></i><h2>Appointments</h2><p>Open the appointments table.</p></button>
-                    <button class="content-card" type="button" data-table="system-table"><i data-lucide="settings-2"></i><h2>System management</h2><p>Open the system table.</p></button>
-                </div>
-                <section class="table-view" id="users-table" hidden>
-                    <div class="table-heading"><div><h2>User management</h2><p>No user data is connected yet.</p></div><button class="back-button" type="button"><i data-lucide="arrow-left"></i>Back</button></div>
-                    <div class="table-container"><table><thead><tr><th>Name</th><th>Role</th><th>Status</th></tr></thead><tbody><tr><td class="empty-cell" colspan="3">No users available</td></tr></tbody></table></div>
-                </section>
-                <section class="table-view" id="appointments-table" hidden>
-                    <div class="table-heading"><div><h2>Appointments</h2><p>No appointment data is connected yet.</p></div><button class="back-button" type="button"><i data-lucide="arrow-left"></i>Back</button></div>
-                    <div class="table-container"><table><thead><tr><th>Patient</th><th>Doctor</th><th>Date</th></tr></thead><tbody><tr><td class="empty-cell" colspan="3">No appointments available</td></tr></tbody></table></div>
-                </section>
-                <section class="table-view" id="system-table" hidden>
-                    <div class="table-heading"><div><h2>System management</h2><p>No system data is connected yet.</p></div><button class="back-button" type="button"><i data-lucide="arrow-left"></i>Back</button></div>
-                    <div class="table-container"><table><thead><tr><th>Setting</th><th>Value</th><th>Status</th></tr></thead><tbody><tr><td class="empty-cell" colspan="3">No system records available</td></tr></tbody></table></div>
-                </section>
-            </section>
-        </main>
+        <div class="content">
+
+    <!-- Header -->
+    <div class="section-header">
+        <div>
+            <h2>System Overview</h2>
+            <p>Monitor hospital operations and system activity.</p>
+        </div>
+
+        <button class="btn btn-secondary" id="refreshAdmin">
+            <i data-lucide="refresh-cw"></i>
+            Refresh
+        </button>
+    </div>
+
+    <!-- Statistics -->
+    <div class="stats-grid">
+
+        <div class="stat-card">
+            <div class="icon">
+                <i data-lucide="users"></i>
+            </div>
+
+            <h3 id="totalPatients">—</h3>
+            <p>Total Patients</p>
+        </div>
+
+        <div class="stat-card">
+            <div class="icon">
+                <i data-lucide="stethoscope"></i>
+            </div>
+
+            <h3 id="totalDoctors">—</h3>
+            <p>Total Doctors</p>
+        </div>
+
+        <div class="stat-card">
+            <div class="icon">
+                <i data-lucide="calendar-days"></i>
+            </div>
+
+            <h3 id="appointments">—</h3>
+            <p>Appointments</p>
+        </div>
+
+        <div class="stat-card critical">
+            <div class="icon">
+                <i data-lucide="triangle-alert"></i>
+            </div>
+
+            <h3 id="criticalCases">—</h3>
+            <p>Critical Cases</p>
+        </div>
+
+    </div>
+
+    <!-- Patient Records -->
+    <div class="card">
+
+        <div class="section-header">
+
+            <div>
+                <h2>Patient Records</h2>
+                <p>Registered patients in the system.</p>
+            </div>
+
+            <div class="search-box">
+                <i data-lucide="search"></i>
+
+                <input
+                    type="text"
+                    id="adminPatientSearch"
+                    placeholder="Search patients..."
+                >
+            </div>
+
+        </div>
+
+        <div id="patientsContainer">
+
+            <div class="empty-state">
+                <i data-lucide="users"></i>
+                <h3>No patient records available</h3>
+                <p>Patient records will appear here when provided by the backend.</p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Doctors -->
+    <div class="card">
+
+        <div class="section-header">
+
+            <div>
+                <h2>Doctors</h2>
+                <p>Registered healthcare professionals.</p>
+            </div>
+
+            <div class="search-box">
+                <i data-lucide="search"></i>
+
+                <input
+                    type="text"
+                    id="doctorSearch"
+                    placeholder="Search doctors..."
+                >
+            </div>
+
+        </div>
+
+        <div id="doctorsContainer">
+
+            <div class="empty-state">
+                <i data-lucide="stethoscope"></i>
+                <h3>No doctor records available</h3>
+                <p>Doctor records will appear here when provided by the backend.</p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- System Alerts -->
+    <div class="card">
+
+        <div class="section-header">
+
+            <div>
+                <h2>System Alerts</h2>
+                <p>Important alerts generated by the system.</p>
+            </div>
+
+        </div>
+
+        <div id="alertsContainer">
+
+            <div class="empty-state">
+                <i data-lucide="shield-check"></i>
+                <h3>No alerts available</h3>
+                <p>System alerts will appear here when received from the backend.</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
     </div>
     <script>
         lucide.createIcons();
