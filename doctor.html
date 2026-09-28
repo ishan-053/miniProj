@@ -1,4 +1,26 @@
-<div class="content">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="dashboard">
+        <aside class="sidebar">
+            <div class="logo">
+                <div class="logo-icon"><i data-lucide="layout-dashboard"></i></div>
+                <strong>Hospital Portal</strong>
+            </div>
+            <nav class="navigation" aria-label="Dashboard navigation">
+                <a href="doctor.html" class="nav-item active" aria-current="page"><i data-lucide="stethoscope"></i><span>Doctor Dashboard</span></a>
+                <a href="patient.html" class="nav-item"><i data-lucide="user-round"></i><span>Patient Dashboard</span></a>
+                <a href="admin.html" class="nav-item"><i data-lucide="shield-check"></i><span>Admin Dashboard</span></a>
+            </nav>
+        </aside>
+        <main class="content">
 
     <!-- Dashboard Header -->
     <div class="section-header">
@@ -105,4 +127,9 @@
 
     </div>
 
-</div>
+        </main>
+    </div>
+    <script src="api.js"></script>
+    <script src="doctor.js"></script>
+</body>
+</html>

@@ -170,18 +170,7 @@
 
 </div>
     </div>
-    <script>
-        lucide.createIcons();
-        const cards = document.querySelectorAll('[data-table]');
-        const cardGrid = document.querySelector('#dashboard-cards');
-        cards.forEach(card => card.addEventListener('click', () => {
-            cardGrid.hidden = true;
-            document.querySelector(`#${card.dataset.table}`).hidden = false;
-        }));
-        document.querySelectorAll('.back-button').forEach(button => button.addEventListener('click', () => {
-            document.querySelectorAll('.table-view').forEach(table => table.hidden = true);
-            cardGrid.hidden = false;
-        }));
-    </script>
+    <script src="api.js"></script>
+    <script src="admin.js"></script>
 </body>
 </html>

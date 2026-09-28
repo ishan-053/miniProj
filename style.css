@@ -85,12 +85,14 @@ select {
     height: 24px;
 }
 
+.navigation,
 .nav {
     display: flex;
     flex-direction: column;
     gap: 6px;
 }
 
+.navigation a,
 .nav a {
     display: flex;
     align-items: center;
@@ -101,17 +103,20 @@ select {
     transition: 0.2s ease;
 }
 
+.navigation a:hover,
 .nav a:hover {
     background: rgba(255, 255, 255, 0.1);
     color: white;
 }
 
+.navigation a.active,
 .nav a.active {
     background: white;
     color: var(--primary);
     font-weight: 600;
 }
 
+.navigation i,
 .nav i {
     width: 18px;
     height: 18px;
