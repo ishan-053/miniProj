@@ -43,6 +43,10 @@ async function loadPatientDashboard() {
         const patientId =
             getPatientId();
 
+        if (!patientId) {
+            return;
+        }
+
 
         const data = await apiGet(
             `/patients/${patientId}/dashboard`
@@ -119,6 +123,10 @@ async function loadPatientVitals() {
         const patientId =
             getPatientId();
 
+        if (!patientId) {
+            return;
+        }
+
 
         const data = await apiGet(
             `/patients/${patientId}/vitals`
@@ -180,6 +188,10 @@ async function loadPatientAppointments() {
 
         const patientId =
             getPatientId();
+
+        if (!patientId) {
+            return;
+        }
 
 
         const data = await apiGet(
@@ -287,6 +299,10 @@ async function loadPatientNotifications() {
 
         const patientId =
             getPatientId();
+
+        if (!patientId) {
+            return;
+        }
 
 
         const data = await apiGet(
@@ -401,15 +417,6 @@ function getPatientId() {
         sessionStorage.getItem(
             "patientId"
         );
-
-
-    if (!patientId) {
-
-        console.warn(
-            "Patient ID is not available."
-        );
-
-    }
 
 
     return patientId;

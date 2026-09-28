@@ -57,6 +57,10 @@ async function loadDoctorDashboard() {
         const doctorId =
             getDoctorId();
 
+        if (!doctorId) {
+            return;
+        }
+
 
         const data = await apiGet(
             `/doctors/${doctorId}/dashboard`
@@ -131,6 +135,10 @@ async function loadDoctorPatients() {
 
         const doctorId =
             getDoctorId();
+
+        if (!doctorId) {
+            return;
+        }
 
 
         const data = await apiGet(
@@ -270,6 +278,10 @@ async function loadDoctorAlerts() {
 
         const doctorId =
             getDoctorId();
+
+        if (!doctorId) {
+            return;
+        }
 
 
         const data = await apiGet(
@@ -411,15 +423,6 @@ function getDoctorId() {
         sessionStorage.getItem(
             "doctorId"
         );
-
-
-    if (!doctorId) {
-
-        console.warn(
-            "Doctor ID is not available."
-        );
-
-    }
 
 
     return doctorId;
